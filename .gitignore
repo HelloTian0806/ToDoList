@@ -1,0 +1,17 @@
+# Eclipse
+.project
+.classpath
+.settings/
+
+# 編譯後的檔案
+*.class
+
+# Maven
+target/
+
+# Log
+*.log
+
+# 作業系統
+.DS_Store
+Thumbs.db
