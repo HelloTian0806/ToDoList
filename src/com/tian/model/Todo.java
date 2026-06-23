@@ -2,11 +2,16 @@ package com.tian.model;
 
 public class Todo {
 	private int id;
-	private String title;
-	private Boolean completed;
+	private String content;
+	private boolean completed;
 	
-	public Todo(String title) {
-		this.title = title;
+	public Todo(int id ,String content, boolean completed) {
+		this.id = id;
+		this.content = content;
+		this.completed = false;
+	}
+	public Todo(String content) {
+		this.content = content;
 		this.completed = false;
 	}
 	public void steId(int id) {
@@ -17,16 +22,16 @@ public class Todo {
 		return this.id;
 	}
 	
-	public void setTitle(String title) {
-		this.title = title;
+	public void setContent(String content) {
+		this.content = content;
 	}
 	
 	public void setCompleted(Boolean completed) {
 		this.completed = completed;
 	}
 
-	public String getTitle() {
-		return this.title;
+	public String getContent() {
+		return this.content;
 	}
 	
 	public Boolean getCompleted() {
