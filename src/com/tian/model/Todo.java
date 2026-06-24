@@ -14,7 +14,7 @@ public class Todo {
 		this.content = content;
 		this.completed = false;
 	}
-	public void steId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	

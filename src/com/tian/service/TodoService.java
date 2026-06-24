@@ -35,12 +35,39 @@ public class TodoService {
 
 		}
 	}
-	public void deleteTodo() {
-		
+	public boolean modifyTodo(int targetId, String content) {
+		for(int i = 0; i < todolist.size(); i++) {
+			if(todolist.get(i).getId() == targetId) {
+				todolist.get(i).setContent(content);
+				reWriteTXT();
+				return true;
+			}
+		}
+		return false;
+	}
+	public boolean deleteTodo(int targetId) {
+		boolean ok = todolist.removeIf(todo -> (targetId==todo.getId()));
+		for(Todo todo : todolist) {
+			System.out.println(todo);
+		}
+		if(ok) {
+			reWriteTXT();
+		}
+		return ok;
+
 	}
 	
-	public void completeTodo() {
-		
+	public boolean completeTodo(int targetId) {
+		for(int i = 0; i < todolist.size(); i++) {
+			if(todolist.get(i).getId() == targetId) {
+				todolist.get(i).setCompleted(true);
+
+				reWriteTXT();
+				
+				return true;
+			}
+		}
+		return false;
 	}
 	private String covertCompleted(boolean complete) {
 		if(complete == false) {
@@ -78,7 +105,17 @@ public class TodoService {
 			e.printStackTrace();
 		}
 	}
-	
+	private void reWriteTXT() {
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter("ToDoList.txt")))
+		{
+			for(Todo todo : todolist) {
+				bw.write(todo.getId()+","+todo.getContent()+","+todo.getCompleted());
+				bw.newLine();
+			}
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
 	public boolean checkInput(String input) {
 		switch (input) {
 		case "1":
